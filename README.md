@@ -12,7 +12,7 @@ The notebook 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb documents the fu
 - Prepare the dataset for forecasting models such as SARIMAX.
 
 ## Repository Structure
-Code
+Code:
 ├── 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb  
 ├── data/
 │   └── FACT_SALES.csv                                   
@@ -38,6 +38,19 @@ The WEEK field (e.g., "01-22") is split into:
 A real calendar date is created using ISO week format:
 
 Code
+
+
+
+
+
+
+
+
+
+
+
+
+. 
 FECHA = pd.to_datetime(YEAR + WEEK_NUM + '1', format='%G%V%u')
 This sets the date to the Monday of each ISO week.
 The dataset is then sorted and indexed by FECHA.
