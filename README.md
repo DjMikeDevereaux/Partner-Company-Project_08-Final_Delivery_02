@@ -1,86 +1,108 @@
 # Partner-Company-Project_08-Final_Delivery_02
 
 Overview
-This repository contains the second final deliverable for the Partner Company Project. The objective of this stage is to advance the analytical development of the business case by performing structured data exploration, cleaning, transformation, and preliminary modeling aligned with the company’s needs.
+This repository contains the second final deliverable for the Partner Company Project (Proyecto Empresa Aliada). In this stage, the focus is on preparing and structuring the sales dataset to enable robust time‑series modeling in future deliverables. The notebook includes data cleaning, date reconstruction, weekly aggregation, and initial exploratory analysis.
 
-The notebook 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb documents the full workflow, including business understanding, dataset preparation, exploratory analysis, and insights relevant for decision-making.
+The notebook 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb documents the full workflow using Python, Pandas, and Statsmodels.
 
-## Project Objectives
-- Strengthen the analytical foundation of the partner company’s business problem.
-- Prepare and refine the dataset for deeper modeling in subsequent deliverables.
-- Identify patterns, anomalies, and relevant variables through exploratory data analysis (EDA).
-- Generate actionable insights that support the company’s strategic goals.
-- Document the entire process clearly for tutor review and future iterations.
+🎯 Objectives
+Convert the raw weekly sales dataset into a clean, time‑indexed structure.
 
-## Repository Structure
+Reconstruct real calendar dates from WEEK codes.
+
+Aggregate sales at weekly level to build a consistent time series.
+
+Prepare the dataset for forecasting models such as SARIMAX.
+
+Document the analytical process clearly for tutor review.
+
+📂 Repository Structure
 Code
-├── 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb   
-├── data/                                                
-├── outputs/                                             
-└── README.md  
+├── 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb   # Main notebook
+├── data/
+│   └── FACT_SALES.csv                                   # Raw sales dataset
+├── outputs/                                             # Weekly series, plots, tables
+└── README.md
+🔍 Methodology
+1. Data Loading
+The dataset FACT_SALES.csv is imported and inspected.
+Columns include:
 
-## Methodology
-The notebook follows a structured analytical workflow:
+WEEK
 
-1. Business Understanding
-- Review of the partner company’s context and problem statement.
-- Definition of analytical goals for Deliverable 02.
+ITEM_CODE
 
-2. Data Loading & Inspection
-- Import of raw datasets provided by the company.
-- Initial structural review: dimensions, variable types, missing values.
+TOTAL_UNIT_SALES
 
-3. Data Cleaning & Preparation
-- Handling missing values.
-- Standardization and normalization of fields when required.
-- Encoding of categorical variables.
-- Removal of duplicates and inconsistent records.
+TOTAL_VALUE_SALES
 
-4. Exploratory Data Analysis (EDA)
-Descriptive statistics.
+TOTAL_UNIT_AVG_WEEKLY_SALES
 
-Distribution analysis of key variables.
+REGION
 
-Correlation matrix and variable relationships.
+2. Date Reconstruction
+The WEEK field (e.g., "01-22") is split into:
 
-Identification of trends, outliers, and business-relevant patterns.
+WEEK_NUM → week number
 
-5. Preliminary Insights
-Summary of findings that impact the business case.
+YEAR → converted from two‑digit format to full year (e.g., "22" → 2022)
 
-Recommendations for modeling in Deliverable 03.
+A real calendar date is created using ISO week format:
 
-📈 Key Insights (General Template)
-Since the notebook content is not visible from the browser tab, these points are placeholders. I can customize them precisely once you share the notebook content or paste the main results.
+Code
+FECHA = pd.to_datetime(YEAR + WEEK_NUM + '1', format='%G%V%u')
+This sets the date to the Monday of each ISO week.
 
-The dataset shows clear patterns related to customer behavior, product performance, or operational efficiency.
+The dataset is then sorted and indexed by FECHA.
 
-Several variables demonstrate strong correlations that will be useful for predictive modeling.
+3. Weekly Aggregation
+Weekly total unit sales are computed:
 
-Data cleaning significantly improved dataset consistency and reliability.
+Code
+df_weekly = df.groupby(df.index)['TOTAL_UNIT_SALES'].sum().to_frame('VENTAS')
+Sample output:
 
-Initial trends suggest opportunities for optimization aligned with the company’s objectives.
+2022‑01‑03 → 5661.824
+
+2022‑01‑10 → 5686.147
+
+2022‑01‑17 → 4844.874
+
+This produces a clean weekly time series ready for forecasting.
+
+4. Exploratory Analysis
+The notebook includes:
+
+Descriptive statistics
+
+Weekly trends
+
+Initial visualization of sales behavior
+
+Identification of fluctuations and seasonal patterns
+
+These insights guide the modeling strategy for Deliverable 03.
+
+📈 Key Insights
+Based on the visible notebook content:
+
+The dataset spans multiple items and regions but is aggregated into a unified weekly sales series.
+
+Weekly sales show noticeable fluctuations, suggesting potential seasonality.
+
+The reconstructed date index ensures compatibility with SARIMAX and other time‑series models.
+
+The transformation pipeline significantly improves data consistency.
 
 🛠️ Technologies Used
 Python 3.x
 
 Pandas, NumPy
 
-Matplotlib, Seaborn
+Matplotlib
+
+Statsmodels (SARIMAX)
+
+Scikit‑learn (metrics)
 
 Jupyter Notebook
-
-Additional libraries depending on the dataset (optional)
-
-📌 Next Steps
-Deliverable 03 will focus on:
-
-Feature engineering
-
-Predictive modeling
-
-Model evaluation
-
-Business interpretation of results
-
-Final recommendations for the partner company
