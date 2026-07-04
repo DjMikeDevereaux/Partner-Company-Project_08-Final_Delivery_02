@@ -5,37 +5,29 @@ This repository contains the second final deliverable for the Partner Company Pr
 
 The notebook 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb documents the full workflow using Python, Pandas, and Statsmodels.
 
-🎯 Objectives
-Convert the raw weekly sales dataset into a clean, time‑indexed structure.
+## Objectives
+- Convert the raw weekly sales dataset into a clean, time‑indexed structure.
+- Reconstruct real calendar dates from WEEK codes.
+- Aggregate sales at weekly level to build a consistent time series.
+- Prepare the dataset for forecasting models such as SARIMAX.
 
-Reconstruct real calendar dates from WEEK codes.
-
-Aggregate sales at weekly level to build a consistent time series.
-
-Prepare the dataset for forecasting models such as SARIMAX.
-
-Document the analytical process clearly for tutor review.
-
-📂 Repository Structure
+## Repository Structure
 Code
-├── 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb   # Main notebook
+├── 58M.01.ProyectoEmpresaAliada_EntregaFinal_02.ipynb  
 ├── data/
-│   └── FACT_SALES.csv                                   # Raw sales dataset
-├── outputs/                                             # Weekly series, plots, tables
+│   └── FACT_SALES.csv                                   
+├── outputs/                                             
 └── README.md
-🔍 Methodology
+
+## Methodology
 1. Data Loading
 The dataset FACT_SALES.csv is imported and inspected.
 Columns include:
 
 WEEK
-
 ITEM_CODE
-
 TOTAL_UNIT_SALES
-
 TOTAL_VALUE_SALES
-
 TOTAL_UNIT_AVG_WEEKLY_SALES
 
 REGION
