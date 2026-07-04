@@ -37,20 +37,8 @@ The WEEK field (e.g., "01-22") is split into:
 
 A real calendar date is created using ISO week format:
 
-Code
+Code:
 
-
-
-
-
-
-
-
-
-
-
-
-. 
 FECHA = pd.to_datetime(YEAR + WEEK_NUM + '1', format='%G%V%u')
 This sets the date to the Monday of each ISO week.
 The dataset is then sorted and indexed by FECHA.
@@ -65,6 +53,8 @@ Sample output:
   - 2022‑01‑03 → 5661.824
   - 2022‑01‑10 → 5686.147
   - 2022‑01‑17 → 4844.874
+
+
 This produces a clean weekly time series ready for forecasting.
 
 4. Exploratory Analysis
