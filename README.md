@@ -32,8 +32,8 @@ Columns include:
 
 2. Date Reconstruction
 The WEEK field (e.g., "01-22") is split into:
-  WEEK_NUM → week number
-  YEAR → converted from two‑digit format to full year (e.g., "22" → 2022)
+  - WEEK_NUM → week number
+  - YEAR → converted from two‑digit format to full year (e.g., "22" → 2022)
 
 A real calendar date is created using ISO week format:
 
@@ -43,15 +43,15 @@ This sets the date to the Monday of each ISO week.
 The dataset is then sorted and indexed by FECHA.
 
 3. Weekly Aggregation
-Weekly total unit sales are computed:
+- Weekly total unit sales are computed:
 
 Code
 df_weekly = df.groupby(df.index)['TOTAL_UNIT_SALES'].sum().to_frame('VENTAS')
 
 Sample output:
-  2022‑01‑03 → 5661.824
-  2022‑01‑10 → 5686.147
-  2022‑01‑17 → 4844.874
+  - 2022‑01‑03 → 5661.824
+  - 2022‑01‑10 → 5686.147
+  - 2022‑01‑17 → 4844.874
 This produces a clean weekly time series ready for forecasting.
 
 4. Exploratory Analysis
