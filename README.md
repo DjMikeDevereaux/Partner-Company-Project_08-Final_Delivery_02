@@ -72,7 +72,7 @@ Based on the visible notebook content:
   - The reconstructed date index ensures compatibility with SARIMAX and other time‑series models.
   - The transformation pipeline significantly improves data consistency.
 
-🛠️ Technologies Used
+## Technologies Used
   - Python 3.x
   - Pandas, NumPy
   - Matplotlib
